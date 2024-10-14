@@ -14,9 +14,9 @@ if __name__ == '__main__':
             try:
                 airdrop = get_deep_airdrop(index=index, address=address, session=session)
                 if airdrop.result.data:
-                    logger.success(f"{index} | {address} | airdrop | eligible.")
+                    logger.success(f"{index} | {address}: eligible.")
                 else:
-                    logger.info(f"{index} | {address} | airdrop | not eligible.")
+                    logger.info(f"{index} | {address}: not eligible.")
             except Exception as e:
                 logger.exception(e)
     except KeyboardInterrupt:
