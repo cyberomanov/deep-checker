@@ -11,11 +11,14 @@ if __name__ == '__main__':
         addresses = read_file(path='user_data/address.txt')
         session = get_proxied_session(proxy=mobile_proxy)
         for index, address in enumerate(addresses, start=1):
-            airdrop = get_deep_airdrop(index=index, address=address, session=session)
-            if airdrop.result.data:
-                logger.success(f"{index} | {address} | airdrop | eligible.")
-            else:
-                logger.info(f"{index} | {address} | airdrop | not eligible.")
+            try:
+                airdrop = get_deep_airdrop(index=index, address=address, session=session)
+                if airdrop.result.data:
+                    logger.success(f"{index} | {address} | airdrop | eligible.")
+                else:
+                    logger.info(f"{index} | {address} | airdrop | not eligible.")
+            except Exception as e:
+                logger.exception(e)
     except KeyboardInterrupt:
         exit()
     except Exception as e:
